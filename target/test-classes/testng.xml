@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <listeners>
+    <listener class-name="com.elnie.tests.listeners.RetryTransformer"/>
+  </listeners>
+<listeners>
+  <listener class-name="com.elnie.tests.reporting.ExtentTestListener"/>
+</listeners>
+  <test name="UI Tests">
+    <classes>
+      <class name="com.elnie.tests.SmokeTest"/>
+    </classes>
+  </test>
+</suite>

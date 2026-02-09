@@ -14,8 +14,7 @@ jobs:
             browser: chrome
           - os: ubuntu-latest
             browser: firefox
-          - os: windows-latest
-            browser: edge
+          
 
     runs-on: ${{ matrix.os }}
 

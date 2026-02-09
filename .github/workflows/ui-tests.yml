@@ -46,11 +46,13 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: screenshots-${{ matrix.browser }}-${{ matrix.os }}
-          path: target/screenshots/**
+          path: target/screenshots
           if-no-files-found: ignore
 
       - name: Upload Surefire Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: surefire-reports-${{ matrix.browser }}
+          name: surefire-reports-${{ matrix.browser }}-${{ matrix.os }}
+          path: target/surefire-reports
+          if-no-files-found: ignore

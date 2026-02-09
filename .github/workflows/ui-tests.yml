@@ -31,7 +31,7 @@ jobs:
           cache: maven
 
       - name: Run tests (headless)
-        run: mvn -B clean test -Dheadless=true -Dretries=1 -Dbrowser=${{ matrix.browser }}
+        run: mvn -B clean test -Dheadless=true -Dretries=1 -Dbrowser=${{ matrix.browser }} -Dsurefire.suiteXmlFiles=src/test/resources/testng.xml
 
       - name: Upload Extent Report
         if: always()
@@ -39,7 +39,7 @@ jobs:
         with:
           name: extent-report-${{ matrix.browser }}-${{ matrix.os }}
           path: target/extent-report.html
-          if-no-files-found: warn
+          if-no-files-found: ignore
 
       - name: Upload Screenshots
         if: always()
@@ -47,12 +47,10 @@ jobs:
         with:
           name: screenshots-${{ matrix.browser }}-${{ matrix.os }}
           path: target/screenshots/**
-          if-no-files-found: warn
+          if-no-files-found: ignore
 
       - name: Upload Surefire Reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: surefire-reports-${{ matrix.browser }}-${{ matrix.os }}
-          path: target/surefire-reports/**
-          if-no-files-found: warn
+          name: surefire-reports-${{ matrix.browser }}
